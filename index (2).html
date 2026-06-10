@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APÉRA | Premium Fruit Confectionery | Social Club Barcelona</title>
+    <meta name="description" content="APÉRA - Premium infused fruit confectionery for elevated member experiences. Social Club Barcelona. 21+ only.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {--black: #000000; --gold: #C9B79C; --gold-light: #D4C4A8; --white: #FFFFFF; --grey: #1a1a1a;}
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Montserrat', sans-serif; background: var(--black); color: var(--gold); line-height: 1.6; overflow-x: hidden;}
+        h1, h2, h3, h4 {font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: 1px;}
+       .lang-switcher {position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px; background: rgba(0,0,0,0.8); padding: 10px 15px; border: 1px solid rgba(201, 183, 156, 0.3); backdrop-filter: blur(10px);}
+       .lang-btn {background: transparent; border: none; color: var(--gold-light); cursor: pointer; font-size: 0.85rem; letter-spacing: 1px; padding: 5px 10px; transition: all 0.3s ease; font-family: 'Montserrat', sans-serif; text-transform: uppercase;}
+       .lang-btn.active {color: var(--gold); font-weight: 600;}
+       .lang-btn:hover {color: var(--gold);}
+       .age-gate {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 20px;}
+       .age-gate.hidden {display: none;}
+       .age-gate h2 {font-size: 2.5rem; margin-bottom: 20px; color: var(--gold);}
+       .age-gate p {margin-bottom: 30px; color: var(--gold-light); max-width: 500px;}
+       .age-gate button {background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 40px; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; text-transform: uppercase;}
+       .age-gate button:hover {background: var(--gold); color: var(--black);}
+       .divider {display: flex; align-items: center; justify-content: center; margin: 60px auto; max-width: 300px;}
+       .divider::before,.divider::after {content: ''; flex: 1; height: 1px; background: var(--gold);}
+       .divider-icon {margin: 0 20px; font-size: 1.5rem; color: var(--gold);}
+       .hero {min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; position: relative;}
+       .logo-drop {width: 80px; height: 100px; margin-bottom: 30px; fill: var(--gold);}
+       .hero h1 {font-size: clamp(3rem, 10vw, 6rem); letter-spacing: 8px; margin-bottom: 10px; font-weight: 300;}
+       .hero.tagline {font-size: 1.1rem; letter-spacing: 3px; color: var(--gold-light); margin-bottom: 10px; text-transform: uppercase;}
+       .hero.subtitle {font-size: 1rem; color: var(--gold-light); margin-bottom: 50px; font-style: italic;}
+       .cta-buttons {display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;}
+       .btn {background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: inline-block;}
+       .btn:hover {background: var(--gold); color: var(--black);}
+       .container {max-width: 1200px; margin: 0 auto; padding: 80px 20px;}
+       .manifesto {text-align: center; max-width: 800px; margin: 0 auto;}
+       .manifesto p {font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; line-height: 1.8; margin-bottom: 30px; color: var(--gold-light); font-style: italic;}
+       .values-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px;}
+       .value-item {text-align: center; padding: 30px 20px; border: 1px solid rgba(201, 183, 156, 0.2); transition: all 0.3s ease;}
+       .value-item:hover {border-color: var(--gold); transform: translateY(-5px);}
+       .value-icon {font-size: 2.5rem; margin-bottom: 15px; color: var(--gold);}
+       .value-item h3 {font-size: 1.1rem; margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase;}
+       .value-item p {font-size: 0.9rem; color: var(--gold-light); line-height: 1.6;}
+       .section-title {text-align: center; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 4px;}
+       .section-subtitle {text-align: center; color: var(--gold-light); margin-bottom: 60px; font-style: italic;}
+       .products-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;}
+       .product-card {border: 1px solid rgba(201, 183, 156, 0.3); padding: 40px 30px; transition: all 0.3s ease; position: relative;}
+       .product-card:hover {border-color: var(--gold); background: rgba(201, 183, 156, 0.03);}
+       .product-badge {position: absolute; top: 20px; right: 20px; background: var(--gold); color: var(--black); padding: 5px 15px; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;}
+       .product-card h3 {font-size: 1.8rem; margin-bottom: 15px;}
+       .product-card.product-desc {color: var(--gold-light); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.7;}
+       .product-details {border-top: 1px solid rgba(201, 183, 156, 0.2); padding-top: 20px; margin-top: 20px; font-size: 0.85rem;}
+       .product-details div {display: flex; justify-content: space-between; margin-bottom: 8px; color: var(--gold-light);}
+       .product-details span:first-child {color: var(--gold);}
+       .events-section {background: var(--grey); padding: 80px 20px;}
+       .events-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 60px auto 0;}
+       .event-card {border: 1px solid var(--gold); padding: 40px 30px; text-align: center;}
+       .event-card h3 {font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 2px;}
+       .event-price {font-size: 3rem; font-family: 'Cormorant Garamond', serif; margin: 20px 0;}
+       .event-features {list-style: none; margin: 30px 0; text-align: left;}
+       .event-features li {padding: 10px 0; border-bottom: 1px solid rgba(201, 183, 156, 0.1); color: var(--gold-light); font-size: 0.9rem;}
+       .event-features li:before {content: '◆'; color: var(--gold); margin-right: 10px;}
+       .contact {text-align: center;}
+       .contact-form {max-width: 600px; margin: 40px auto 0; text-align: left;}
+       .form-group {margin-bottom: 25px;}
+       .form-group label {display: block; margin-bottom: 8px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold-light);}
+       .form-group input,.form-group textarea {width: 100%; padding: 15px; background: transparent; border: 1px solid rgba(201, 183, 156, 0.3); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 1rem; transition: all 0.3s ease;}
+       .form-group input:focus,.form-group textarea:focus {outline: none; border-color: var(--gold);}
+       .form-group textarea {min-height: 120px; resize: vertical;}
+        footer {border-top: 1px solid rgba(201, 183, 156, 0.2); padding: 40px 20px; text-align: center; color: var(--gold-light); font-size: 0.85rem;}
+       .footer-links {margin-bottom: 20px;}
+       .footer-links a {color: var(--gold-light); text-decoration: none; margin: 0 15px; transition: color 0.3s ease;}
+       .footer-links a:hover {color: var(--gold);}
+        @media (max-width: 768px) {
+           .hero h1 {font-size: 3rem; letter-spacing: 4px;}
+           .cta-buttons {flex-direction: column;}
+           .btn {width: 100%;}
+           .section-title {font-size: 2rem;}
+           .lang-switcher {top: 10px; right: 10px; padding: 8px 12px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('fr')">FR</button>
+        <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+    </div>
+
+    <div class="age-gate" id="ageGate">
+        <svg class="logo-drop" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 0 C30 0, 0 35, 0 55 C0 70, 13 80, 30 80 C47 80, 60 70, 60 55 C60 35, 30 0, 30 0 Z"/></svg>
+        <h2>APÉRA</h2>
+        <p data-i18n="age_gate_text">Ce site contient des informations sur des produits infusés au THC. Vous devez avoir 21 ans ou plus pour entrer.</p>
+        <button onclick="verifyAge()" data-i18n="age_gate_btn">J'ai 21 ans ou plus</button>
+    </div>
+
+    <section class="hero">
+        <svg class="logo-drop" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg"><path d="M30 0 C30 0, 0 35, 0 55 C0 70, 13 80, 30 80 C47 80, 60 70, 60 55 C60 35, 30 0, 30 0 Z"/></svg>
+        <h1>APÉRA</h1>
+        <p class="tagline" data-i18n="hero_tagline">Confiserie Premium aux Fruits</p>
+        <p class="subtitle" data-i18n="hero_subtitle">Expériences Élevées pour Membres à Barcelone</p>
+        <div class="cta-buttons">
+            <a href="#products" class="btn" data-i18n="btn_products">Découvrir les Produits</a>
+            <a href="#events" class="btn" data-i18n="btn_events">Réserver un Événement</a>
+        </div>
+    </section>
+
+    <div class="divider"><span class="divider-icon">❖</span></div>
+
+    <section class="container">
+        <div class="manifesto">
+            <p data-i18n="manifesto_1">APÉRA a été créé pour redéfinir la confiserie infusée à travers de vrais fruits, l'inspiration cocktail et un engagement envers l'artisanat et la perfection.</p>
+            <p data-i18n="manifesto_2">Alors que le marché des edibles devenait de plus en plus saturé de produits artificiels axés sur les bonbons, nous avons vu l'opportunité de créer quelque chose de différent. Des produits pour les consommateurs qui valorisent les vrais ingrédients, les saveurs raffinées et les expériences élevées.</p>
+            <p data-i18n="manifesto_3">Inspirés par la mixologie premium et la culture culinaire moderne, nous nous concentrons sur des créations artisanales en petits lots à base de vrais fruits, aux profils de saveurs équilibrés.</p>
+            <p data-i18n="manifesto_4">Notre objectif est simple : élever les produits infusés au-delà des edibles traditionnels et créer une nouvelle génération de confiserie premium aux fruits conçue pour la culture cannabis moderne.</p>
+        </div>
+    </section>
+
+    <div class="divider"><span class="divider-icon">❖</span></div>
+
+    <section class="container">
+        <h2 class="section-title" data-i18n="values_title">NOS VALEURS</h2>
+        <div class="values-grid">
+            <div class="value-item"><div class="value-icon">🍊</div><h3 data-i18n="value_1_title">100% Naturel</h3><p data-i18n="value_1_desc">Fabriqué avec des ingrédients d'origine naturelle et des composants soigneusement sélectionnés.</p></div>
+            <div class="value-item"><div class="value-icon">✋</div><h3 data-i18n="value_2_title">Fait Main</h3><p data-i18n="value_2_desc">Produit avec attention aux détails, équilibre des saveurs et constance.</p></div>
+            <div class="value-item"><div class="value-icon">🍓</div><h3 data-i18n="value_3_title">100% Vrais Fruits</h3><p data-i18n="value_3_desc">Fabriqué avec de vrais fruits pour une saveur, texture et arôme authentiques.</p></div>
+            <div class="value-item"><div class="value-icon">🌱</div><h3 data-i18n="value_4_title">Sans OGM</h3><p data-i18n="value_4_desc">Élaboré sans ingrédients ou matières premières génétiquement modifiés.</p></div>
+            <div class="value-item"><div class="value-icon">0%</div><h3 data-i18n="value_5_title">0% Alcool</h3><p data-i18n="value_5_desc">Formulé sans émulsions à base d'alcool ou ingrédients contenant de l'alcool.</p></div>
+            <div class="value-item"><div class="value-icon">🌿</div><h3 data-i18n="value_6_title">Vegan</h3><p data-i18n="value_6_desc">Fabriqué sans ingrédients d'origine animale ni gélatine.</p></div>
+            <div class="value-item"><div class="value-icon">💧</div><h3 data-i18n="value_7_title">Dosage Précis</h3><p data-i18n="value_7_desc">Formulé avec soin pour une distribution précise et constante des cannabinoïdes.</p></div>
+            <div class="value-item"><div class="value-icon">🥣</div><h3 data-i18n="value_8_title">Petits Lots</h3><p data-i18n="value_8_desc">Produit en quantités limitées pour maintenir une qualité premium et le contrôle du produit.</p></div>
+            <div class="value-item"><div class="value-icon">🍸</div><h3 data-i18n="value_9_title">Inspiré Cocktails</h3><p data-i18n="value_9_desc">Inspiré par les profils de saveurs de cocktails iconiques et la culture mixologie moderne.</p></div>
+        </div>
+    </section>
+
+    <div class="divider"><span class="divider-icon">❖</span></div>
+
+    <section class="container" id="products">
+        <h2 class="section-title" data-i18n="products_title">LA COLLECTION</h2>
+        <p class="section-subtitle" data-i18n="products_subtitle">Conçu pour les social clubs premium et les expériences élevées</p>
+        <div class="products-grid">
+            <div class="product-card"><h3 data-i18n="product_1_name">Cuir de Fruit</h3><p class="product-desc" data-i18n="product_1_desc">Bandes de cuir de fruit artisanales inspirées de fruits sélectionnés et élaborées avec de vraies purées. Fin. Moelleux. Intensément fruité.</p><div class="product-details"><div><span data-i18n="detail_weight">Poids Net</span><span>30g / 45g</span></div><div><span data-i18n="detail_thc">Infusion THC</span><span>600mg / 1000mg</span></div><div><span data-i18n="detail_shelf">Durée de Conservation</span><span data-i18n="detail_shelf_6">Jusqu'à 6 mois</span></div></div></div>
+            <div class="product-card"><span class="product-badge" data-i18n="badge_soon">Bientôt Disponible</span><h3 data-i18n="product_2_name">Gommes aux Fruits</h3><p class="product-desc" data-i18n="product_2_desc">Gommes vegan artisanales aux fruits créées avec de vrais ingrédients. Vegan. Fruité. Naturellement agréable.</p><div class="product-details"><div><span data-i18n="detail_weight">Poids Net</span><span>30g / 45g</span></div><div><span data-i18n="detail_thc">Infusion THC</span><span>600mg / 1000mg</span></div><div><span data-i18n="detail_shelf">Durée de Conservation</span><span data-i18n="detail_shelf_12">Jusqu'à 12 mois</span></div></div></div>
+            <div class="product-card"><span class="product-badge" data-i18n="badge_soon">Bientôt Disponible</span><h3 data-i18n="product_3_name">Chips de Fruits</h3><p class="product-desc" data-i18n="product_3_desc">Créées à partir de vrais fruits et transformées par lyophilisation. Léger. Croustillant. Intensément fruité.</p><div class="product-details"><div><span data-i18n="detail_weight">Poids Net</span><span>100g</span></div><div><span data-i18n="detail_thc">Infusion THC</span><span>1000mg</span></div><div><span data-i18n="detail_shelf">Durée de Conservation</span><span data-i18n="detail_shelf_12">Jusqu'à 12 mois</span></div></div></div>
+            <div class="product-card"><span class="product-badge" data-i18n="badge_soon">Bientôt Disponible</span><h3 data-i18n="product_4_name">Base Mocktail</h3><p class="product-desc" data-i18n="product_4_desc">Bases de sirop mono-fruit inspirées de la mixologie moderne. Saveur vibrante. Combinaisons infinies.</p><div class="product-details"><div><span data-i18n="detail_weight">Poids Net</span><span>30ml</span></div><div><span data-i18n="detail_thc">Infusion THC</span><span>300mg</span></div><div><span data-i18n="detail_shelf">Durée de Conservation</span><span data-i18n="detail_shelf_12">Jusqu'à 12 mois</span></div></div></div>
+        </div>
+    </section>
+
+    <div class="divider"><span class="divider-icon">❖</span></div>
+
+    <section class="events-section" id="events">
+        <div class="container">
+            <h2 class="section-title" data-i18n="events_title">ÉVÉNEMENTS MOCKTAIL</h2>
+            <p class="section-subtitle" data-i18n="events_subtitle">Élevez Votre Club en Créant des Moments Inoubliables</p>
+            <div class="events-grid">
+                <div class="event-card"><h3 data-i18n="event_1_title">ÉVÉNEMENT 100 MEMBRES</h3><div class="event-price">400€</div><ul class="event-features"><li data-i18n="event_1_f1">100 mocktails gratuits</li><li data-i18n="event_1_f2">150mg par mocktail</li><li data-i18n="event_1_f3">Présentation & dégustation produit</li><li data-i18n="event_1_f4">Barmans professionnels</li><li data-i18n="event_1_f5">Mocktails supplémentaires disponibles</li></ul><a href="#contact" class="btn" data-i18n="btn_book">Réserver</a></div>
+                <div class="event-card"><h3 data-i18n="event_2_title">ÉVÉNEMENT 50 MEMBRES</h3><div class="event-price">350€</div><ul class="event-features"><li data-i18n="event_2_f1">50 mocktails gratuits</li><li data-i18n="event_2_f2">150mg par mocktail</li><li data-i18n="event_2_f3">Présentation & dégustation produit</li><li data-i18n="event_2_f4">Barmans professionnels</li><li data-i18n="event_2_f5">Mocktails supplémentaires disponibles</li></ul><a href="#contact" class="btn" data-i18n="btn_book">Réserver</a></div>
+                <div class="event-card"><h3 data-i18n="event_3_title">FORMAT OPEN BAR</h3><div class="event-price" data-i18n="event_3_price">Installation Gratuite</div><ul class="event-features"><li data-i18n="event_3_f1">Station cocktail complète</li><li data-i18n="event_3_f2">Les membres achètent pendant l'event</li><li data-i18n="event_3_f3">150mg - 10€</li><li data-i18n="event_3_f4">300mg - 20€</li><li data-i18n="event_3_f5">Nous apportons tout</li></ul><a href="#contact" class="btn" data-i18n="btn_inquire">Demander</a></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><span class="divider-icon">❖</span></div>
+
+    <section class="container contact" id="contact">
+        <h2 class="section-title" data-i18n="contact_title">DEVENIR MEMBRE</h2>
+        <p class="section-subtitle" data-i18n="contact_subtitle">Mocktails premium, vrais ingrédients, nuits inoubliables</p>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert(translations[currentLang].form_success);">
+            <div class="form-group"><label data-i18n="form_club">Nom du Club</label><input type="text" required data-i18n-placeholder="form_club_ph" placeholder="Votre Social Club"></div>
+            <div class="form-group"><label data-i18n="form_name">Nom du Contact</label><input type="text" required data-i18n-placeholder="form_name_ph" placeholder="Jean Dupont"></div>
+            <div class="form-group"><label data-i18n="form_email">Email</label><input type="email" required placeholder="contact@apera.club"></div>
+            <div class="form-group"><label data-i18n="form_message">Message</label><textarea required data-i18n-placeholder="form_message_ph" placeholder="Parlez-nous de votre club et de vos besoins..."></textarea></div>
+            <button type="submit" class="btn" style="width: 100%;" data-i18n="form_submit">Envoyer la Demande</button>
+        </form>
+        <p style="margin-top: 40px; color: var(--gold-light); font-size: 0.9rem;">Barcelona, Spain<br>contact@apera.club<br><span data-i18n="contact_disclaimer">21+ Uniquement | Pour Membres de Social Club</span></p>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Instagram</a>
+            <a href="#" data-i18n="footer_privacy">Confidentialité</a>
+            <a href="#" data-i18n="footer_terms">Conditions</a>
+        </div>
+        <p>APÉRA © 2026 | Premium Fruit Confectionery | Barcelona</p>
+        <p style="margin-top: 10px; font-size: 0.75rem; opacity: 0.6;" data-i18n="footer_warning">Ce produit contient du THC. Tenir hors de portée des enfants. Réservé aux adultes de 21 ans et plus.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            fr: {
+                age_gate_text: "Ce site contient des informations sur des produits infusés au THC. Vous devez avoir 21 ans ou plus pour entrer.",
+                age_gate_btn: "J'ai 21 ans ou plus",
+                hero_tagline: "Confiserie Premium aux Fruits",
+                hero_subtitle: "Expériences Élevées pour Membres à Barcelone",
+                btn_products: "Découvrir les Produits",
+                btn_events: "Réserver un Événement",
+                manifesto_1: "APÉRA a été créé pour redéfinir la confiserie infusée à travers de vrais fruits, l'inspiration cocktail et un engagement envers l'artisanat et la perfection.",
+                manifesto_2: "Alors que le marché des edibles devenait de plus en plus saturé de produits artificiels axés sur les bonbons, nous avons vu l'opportunité de créer quelque chose de différent. Des produits pour les consommateurs qui valorisent les vrais ingrédients, les saveurs raffinées et les expériences élevées.",
+                manifesto_3: "Inspirés par la mixologie premium et la culture culinaire moderne, nous nous concentrons sur des créations artisanales en petits lots à base de vrais fruits, aux profils de saveurs équilibrés.",
+                manifesto_4: "Notre objectif est simple : élever les produits infusés au-delà des edibles traditionnels et créer une nouvelle génération de confiserie premium aux fruits conçue pour la culture cannabis moderne.",
+                values_title: "NOS VALEURS",
+                value_1_title: "100% Naturel",
+                value_1_desc: "Fabriqué avec des ingrédients d'origine naturelle et des composants soigneusement sélectionnés.",
+                value_2_title: "Fait Main",
+                value_2_desc: "Produit avec attention aux détails, équilibre des saveurs et constance.",
+                value_3_title: "100% Vrais Fruits",
+                value_3_desc: "Fabriqué avec de vrais fruits pour une saveur, texture et arôme authentiques.",
+                value_4_title: "Sans OGM",
+                value_4_desc: "Élaboré sans ingrédients ou matières premières génétiquement modifiés.",
+                value_5_title: "0% Alcool",
+                value_5_desc: "Formulé sans émulsions à base d'alcool ou ingrédients contenant de l'alcool.",
+                value_6_title: "Vegan",
+                value_6_desc: "Fabriqué sans ingrédients d'origine animale ni gélatine.",
+                value_7_title: "Dosage Précis",
+                value_7_desc: "Formulé avec soin pour une distribution précise et constante des cannabinoïdes.",
+                value_8_title: "Petits Lots",
+                value_8_desc: "Produit en quantités limitées pour maintenir une qualité premium et le contrôle du produit.",
+                value_9_title: "Inspiré Cocktails",
+                value_9_desc: "Inspiré par les profils de saveurs de cocktails iconiques et la culture mixologie moderne.",
+                products_title: "LA COLLECTION",
+                products_subtitle: "Conçu pour les social clubs premium et les expériences élevées",
+                product_1_name: "Cuir de Fruit",
+                product_1_desc: "Bandes de cuir de fruit artisanales inspirées de fruits sélectionnés et élaborées avec de vraies purées. Fin. Moelleux. Intensément fruité.",
+                product_2_name: "Gommes aux Fruits",
+                product_2_desc: "Gommes vegan artisanales aux fruits créées avec de vrais ingrédients. Vegan. Fruité. Naturellement agréable.",
+                product_3_name: "Chips de Fruits",
+                product_3_desc: "Créées à partir de vrais fruits et transformées par lyophilisation. Léger. Croustillant. Intensément fruité.",
+                product_4_name: "Base Mocktail",
+                product_4_desc: "Bases de sirop mono-fruit inspirées de la mixologie moderne. Saveur vibrante. Combinaisons infinies.",
+                detail_weight: "Poids Net",
+                detail_thc: "Infusion THC",
+                detail_shelf: "Durée de Conservation",
+                detail_shelf_6: "Jusqu'à 6 mois",
+                detail_shelf_12: "Jusqu'à 12 mois",
+                badge_soon: "Bientôt Disponible",
+                events_title: "ÉVÉNEMENTS MOCKTAIL",
+                events_subtitle: "Élevez Votre Club en Créant des Moments Inoubliables",
+                event_1_title: "ÉVÉNEMENT 100 MEMBRES",
+                event_1_f1: "100 mocktails gratuits",
+                event_1_f2: "150mg par mocktail",
+                event_1_f3: "Présentation & dégustation produit",
+                event_1_f4: "Barmans professionnels",
+                event_1_f5: "Mocktails supplémentaires disponibles",
+                event_2_title: "ÉVÉNEMENT 50 MEMBRES",
+                event_2_f1: "50 mocktails gratuits",
+                event_2_f2: "150mg par mocktail",
+                event_2_f3: "Présentation & dégustation produit",
+                event_2_f4: "Barmans professionnels",
+                event_2_f5: "Mocktails supplémentaires disponibles",
+                event_3_title: "FORMAT OPEN BAR",
+                event_3_price: "Installation Gratuite",
+                event_3_f1: "Station cocktail complète",
+                event_3_f2: "Les membres achètent pendant l'event",
+                event_3_f3: "150mg - 10€",
+                event_3_f4: "300mg - 20€",
+                event_3_f5: "Nous apportons tout",
+                btn_book: "Réserver",
+                btn_inquire: "Demander",
+                contact_title: "DEVENIR MEMBRE",
+                contact_subtitle: "Mocktails premium, vrais ingrédients, nuits inoubliables",
+                form_club: "Nom du Club",
+                form_club_ph: "Votre Social Club",
+                form_name: "Nom du Contact",
+                form_name_ph: "Jean Dupont",
+                form_email: "Email",
+                form_message: "Message",
+                form_message_ph: "Parlez-nous de votre club et de vos besoins...",
+                form_submit: "Envoyer la Demande",
+                form_success: "Merci! Nous vous contacterons bientôt.",
+                contact_disclaimer: "21+ Uniquement | Pour Membres de Social Club",
+                footer_privacy: "Confidentialité",
+                footer_terms: "Conditions",
+                footer_warning: "Ce produit contient du THC. Tenir hors de portée des enfants. Réservé aux adultes de 21 ans et plus."
+            },
+            es: {
+                age_gate_text: "Este sitio contiene información sobre productos con THC. Debes tener 21+ para entrar.",
+                age_gate_btn: "Tengo 21 años o más",
+                hero_tagline: "Confitería Premium de Frutas",
+                hero_subtitle: "Experiencias Elevadas para Miembros en Barcelona",
+                btn_products: "Descubrir Productos",
+                btn_events: "Reservar un Evento",
+                manifesto_1: "APÉRA fue creado para redefinir la confitería infusionada a través de fruta real, inspiración de cócteles y un compromiso con la artesanía y la perfección.",
+                manifesto_2: "Mientras el mercado de comestibles se saturaba cada vez más con productos artificiales enfocados en dulces, vimos la oportunidad de crear algo diferente. Productos para consumidores que valoran ingredientes reales, sabores refinados y experiencias elevadas.",
+                manifesto_3: "Inspirados en la mixología premium y la cultura culinaria moderna, nos enfocamos en creaciones artesanales de lotes pequeños hechas con fruta real y perfiles de sabor equilibrados.",
+                manifesto_4: "Nuestro objetivo es simple: elevar los productos infusionados más allá de los comestibles tradicionales y crear una nueva generación de confitería premium de frutas diseñada para la cultura cannábica moderna.",
+                values_title: "NUESTROS VALORES",
+                value_1_title: "100% Natural",
+                value_1_desc: "Hecho con ingredientes de origen natural y componentes cuidadosamente seleccionados.",
+                value_2_title: "Hecho a Mano",
+                value_2_desc: "Producido con atención al detalle, equilibrio de sabor y consistencia.",
+                value_3_title: "100% Fruta Real",
+                value_3_desc: "Hecho con fruta real para un sabor, textura y aroma auténticos.",
+                value_4_title: "Sin OGM",
+                value_4_desc: "Elaborado sin ingredientes o materias primas genéticamente modificados.",
+                value_5_title: "0% Alcohol",
+                value_5_desc: "Formulado sin emulsiones a base de alcohol o ingredientes que contengan alcohol.",
+                value_6_title: "Vegano",
+                value_6_desc: "Hecho sin ingredientes de origen animal ni gelatina.",
+                value_7_title: "Dosis Precisa",
+                value_7_desc: "Formulado cuidadosamente para una distribución precisa y consistente de cannabinoides.",
+                value_8_title: "Lotes Pequeños",
+                value_8_desc: "Producido en cantidades limitadas para mantener calidad premium y control del producto.",
+                value_9_title: "Inspirado en Cócteles",
+                value_9_desc: "Inspirado en perfiles de sabor de cócteles icónicos y cultura mixológica moderna.",
+                products_title: "LA COLECCIÓN",
+                products_subtitle: "Diseñado para social clubs premium y experiencias elevadas",
+                product_1_name: "Cuero de Fruta",
+                product_1_desc: "Tiras artesanales de cuero de fruta inspiradas en frutas selectas y elaboradas con purés reales. Fino. Masticable. Intensamente frutal.",
+                product_2_name: "Gominolas de Frutas",
+                product_2_desc: "Gominolas veganas artesanales creadas con ingredientes de fruta real. Vegano. Afrutado. Naturalmente agradable.",
+                product_3_name: "Chips de Frutas",
+                product_3_desc: "Elaboradas con fruta real y transformadas mediante liofilización. Ligero. Crujiente. Intensamente frutal.",
+                product_4_name: "Base Mocktail",
+                product_4_desc: "Bases de jarabe monofruta inspiradas en la mixología moderna. Sabor vibrante. Combinaciones infinitas.",
+                detail_weight: "Peso Neto",
+                detail_thc: "Infusión THC",
+                detail_shelf: "Vida Útil",
+                detail_shelf_6: "Hasta 6 meses",
+                detail_shelf_12: "Hasta 12 meses",
+                badge_soon: "Próximamente",
+                events_title: "EVENTOS MOCKTAIL",
+                events_subtitle: "Eleva Tu Club Creando Momentos Inolvidables",
+                event_1_title: "EVENTO 100 MIEMBROS",
+                event_1_f1: "100 mocktails gratis",
+                event_1_f2: "150mg por mocktail",
+                event_1_f3: "Presentación y degustación de producto",
+                event_1_f4: "Barmans profesionales",
+                event_1_f5: "Mocktails adicionales disponibles",
+                event_2_title: "EVENTO 50 MIEMBROS",
+                event_2_f1: "50 mocktails gratis",
+                event_2_f2: "150mg por mocktail",
+                event_2_f3: "Presentación y degustación de producto",
+                event_2_f4: "Barmans profesionales",
+                event_2_f5: "Mocktails adicionales disponibles",
+                event_3_title: "FORMATO BARRA LIBRE",
+                event_3_price: "Montaje Gratis",
+                event_3_f1: "Estación de cócteles completa",
+                event_3_f2: "Los miembros compran durante el evento",
+                event_3_f3: "150mg - 10€",
+                event_3_f4: "300mg - 20€",
+                event_3_f5: "Traemos todo",
+                btn_book: "Reservar",
+                btn_inquire: "Consultar",
+                contact_title: "HAZTE MIEMBRO",
+                contact_subtitle: "Mocktails premium, ingredientes reales, noches inolvidables",
+                form_club: "Nombre del Club",
+                form_club_ph: "Tu Social Club",
+                form_name: "Nombre de Contacto",
+                form_name_ph: "Juan Pérez",
+                form_email: "Email",
+                form_message: "Mensaje",
+                form_message_ph: "Cuéntanos sobre tu club y necesidades...",
+                form_submit: "Enviar Consulta",
+                form_success: "¡Gracias! Te contactaremos pronto.",
+                contact_disclaimer: "Solo 21+ | Para Miembros de Social Club",
+                footer_privacy: "Privacidad",
+                footer_terms: "Términos",
+                footer_warning: "Este producto contiene THC. Mantener fuera del alcance de los niños. Solo para adultos de 21+."
+            },
+            en: {
+                age_gate_text: "This website contains information about THC-infused products. You must be 21+ to enter.",
+                age_gate_btn: "I am 21+ / I'm 21 or older",
+                hero_tagline: "Premium Fruit Confectionery",
+                hero_subtitle: "Elevated Member Experiences in Barcelona",
+                btn_products: "Discover Products",
+                btn_events: "Book an Event",
+                manifesto_1: "APÉRA was created to redefine infused confectionery through real fruit, cocktail inspiration and a commitment to artisanal craftsmanship and perfection.",
+                manifesto_2: "As the edible market became increasingly saturated with overly artificial, candy-focused products, we saw an opportunity to create something different. Products made for consumers who value real ingredients, refined flavours and elevated experiences.",
+                manifesto_3: "Inspired by premium mixology and modern culinary culture, we focus on handcrafted small-batch creations made with real fruit, and carefully balanced flavour profiles.",
+                manifesto_4: "Our goal is simple: to elevate infused products beyond traditional edibles and create a new generation of premium fruit confectionery designed for modern cannabis culture.",
+                values_title: "OUR VALUES",
+                value_1_title: "100% Natural",
+                value_1_desc: "Made using naturally derived ingredients and carefully selected components.",
+                value_2_title: "Hand Crafted",
+                value_2_desc: "Produced with attention to detail, flavour balance and consistency.",
+                value_3_title: "100% Real Fruit",
+                value_3_desc: "Made with real fruit for authentic flavour, texture and aroma.",
+                value_4_title: "No GMO",
+                value_4_desc: "Crafted without genetically modified ingredients or raw materials.",
+                value_5_title: "0% Alcohol",
+                value_5_desc: "Formulated without alcohol-based emulsions or alcohol-containing ingredients.",
+                value_6_title: "Vegan",
+                value_6_desc: "Made without animal-derived ingredients or gelatin.",
+                value_7_title: "Precision Dosed",
+                value_7_desc: "Carefully formulated for accurate and consistent cannabinoid distribution.",
+                value_8_title: "Small Batch",
+                value_8_desc: "Produced in limited quantities to maintain premium quality and product control.",
+                value_9_title: "Cocktail Inspired",
+                value_9_desc: "Inspired by iconic cocktail flavour profiles and modern mixology culture.",
+                products_title: "THE COLLECTION",
+                products_subtitle: "Built for premium social clubs and elevated member experiences",
+                product_1_name: "Fruit Leather",
+                product_1_desc: "Handcrafted fruit leather strips inspired by selected fruits and crafted using real fruit purées. Thin. Chewy. Intensely fruity.",
+                product_2_name: "Fruit Gummies",
+                product_2_desc: "Handcrafted vegan fruit gummies created using real fruit ingredients. Vegan. Fruity. Naturally enjoyable.",
+                product_3_name: "Fruit Crisps",
+                product_3_desc: "Crafted from real fruit and transformed through freeze-drying technology. Light. Crispy. Intensely fruity.",
+                product_4_name: "Mocktail Base",
+                product_4_desc: "Single-fruit syrup bases inspired by modern mixology culture. Vibrant flavour. Endless combinations.",
+                detail_weight: "Net Weight",
+                detail_thc: "THC Infusion",
+                detail_shelf: "Shelf Life",
+                detail_shelf_6: "Up to 6 months",
+                detail_shelf_12: "Up to 12 months",
+                badge_soon: "Coming Soon",
+                events_title: "MOCKTAIL EVENTS",
+                events_subtitle: "Elevate Your Club By Creating Unforgettable Moments",
+                event_1_title: "100 MEMBERS EVENT",
+                event_1_f1: "100 free mocktails",
+                event_1_f2: "150mg per mocktail",
+                event_1_f3: "Product presentation & degustation",
+                event_1_f4: "Professional bartenders",
+                event_1_f5: "Additional mocktails available",
+                event_2_title: "50 MEMBERS EVENT",
+                event_2_f1: "50 free mocktails",
+                event_2_f2: "150mg per mocktail",
+                event_2_f3: "Product presentation & degustation",
+                event_2_f4: "Professional bartenders",
+                event_2_f5: "Additional mocktails available",
+                event_3_title: "OPEN BAR FORMAT",
+                event_3_price: "Free Setup",
+                event_3_f1: "Full cocktail station setup",
+                event_3_f2: "Members purchase during event",
+                event_3_f3: "150mg - 10€",
+                event_3_f4: "300mg - 20€",
+                event_3_f5: "We bring everything",
+                btn_book: "Book Now",
+                btn_inquire: "Inquire",
+                contact_title: "BECOME A MEMBER",
+                contact_subtitle: "Premium mocktails, real ingredients, unforgettable nights",
+                form_club: "Club Name",
+                form_club_ph: "Your Social Club",
+                form_name: "Contact Name",
+                form_name_ph: "John Doe",
+                form_email: "Email",
+                form_message: "Message",
+                form_message_ph: "Tell us about your club and event needs...",
+                form_submit: "Send Inquiry",
+                form_success: "Thank you! We will contact you soon.",
+                contact_disclaimer: "21+ Only | For Social Club Members",
+                footer_privacy: "Privacy",
+                footer_terms: "Terms",
+                footer_warning: "This product contains THC. Keep out of reach of children. For use only by adults 21+."
+            }
+        };
+
+        let currentLang = localStorage.getItem('apera_lang') || 'fr';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('apera_lang', lang);
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang] && translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+        }
+
+        function verifyAge() {
+            document.getElementById('ageGate').classList.add('hidden');
+            localStorage.setItem('apera_age_verified', 'true');
+        }
+
+        if (localStorage.getItem('apera_age_verified') === 'true') {
+            document.getElementById('ageGate').classList.add('hidden');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
